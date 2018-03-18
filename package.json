@@ -1,0 +1,20 @@
+{
+  "name": "@f9software/form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "node jasmine.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@f9software/model": "0.0.6"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.6",
+    "jasmine": "^3.1.0",
+    "typescript": "^2.7.2"
+  }
+}
