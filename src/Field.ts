@@ -6,6 +6,7 @@ export interface FieldData {
     name: string;
     value: any;
     validators: IValidator[];
+    label: string;
 }
 
 export class Field extends Model<FieldData> {
@@ -13,6 +14,7 @@ export class Field extends Model<FieldData> {
 
     protected init() {
         return <FieldData> {
+            label: null,
             name: null,
             value: null,
             validators: null
