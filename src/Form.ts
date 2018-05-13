@@ -1,21 +1,15 @@
-import {Model} from "@f9software/model";
 import {Field} from "./Field";
+import {Collection} from '@f9software/collection';
 
-export interface FormData {
-    name: string;
-    fields: Field[];
-}
+export class Form {
+    private fields: Collection<Field> = new Collection<Field>(field => field.getName());
 
-export class Form extends Model<FormData> {
-    protected init() {
-        return <FormData> {
-            name: null,
-            fields: null
-        };
+    public constructor(fields: Field[]) {
+        this.fields.addAll(fields);
     }
 
     isValid(): boolean {
         // if any of the fields is invalid, then the entire form is invalid
-        return !this.get('fields').some(field => !field.isValid());
+        return !this.fields.getRange().some(field => !field.isValid());
     }
 }

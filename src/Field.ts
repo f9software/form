@@ -1,32 +1,73 @@
-import {Model} from "@f9software/model";
 import {IValidator} from "./validator/Validator";
 import {IError} from "./validator/Error";
 
-export interface FieldData {
-    name: string;
-    value: any;
-    validators: IValidator[];
-    label: string;
-}
-
-export class Field extends Model<FieldData> {
+export class Field {
     private errors: IError[] = null;
 
-    protected init() {
-        return <FieldData> {
-            label: null,
-            name: null,
-            value: null,
-            validators: null
-        };
+    private name: string;
+
+    private label: string;
+
+    private validators: IValidator[];
+
+    private value: any;
+
+    public constructor(data?: {name?: string, label?: string, validators?: IValidator[]}) {
+        if (data) {
+            if (data.name) {
+                this.setName(data.name);
+            }
+
+            if (data.label) {
+                this.setLabel(data.label);
+            }
+
+            if (data.validators) {
+                this.setValidators(data.validators);
+            }
+        }
+    }
+
+    public setValue(value: any) {
+        this.value = value;
+    }
+
+    public getValue(): any {
+        return this.value;
+    }
+
+    public setName(name: string) {
+        this.name = name;
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+
+    public setLabel(label: string) {
+        this.label = label;
+    }
+
+    public getLabel(): string {
+        return this.label;
+    }
+
+    public setValidators(validators: IValidator[]) {
+        this.validators = validators;
+    }
+
+    public getValidators(): IValidator[] {
+        return this.validators;
     }
 
     isValid(): boolean {
+        const value = this.getValue();
+
         // we clear any previous errors when we start a new validation
         this.clearErrors();
 
-        const validators = this.get('validators');
-        const value = this.get('value');
+        const validators = this.getValidators();
+        // const value = this.get('value');
         const errors: IError[] = [];
 
         let valid = true;

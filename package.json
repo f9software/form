@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@f9software/model": "0.0.6"
+    "@f9software/collection": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.8.6",
+    "@types/jasmine": "^2.8.7",
     "jasmine": "^3.1.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.8.3"
   }
 }

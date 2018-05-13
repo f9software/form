@@ -13,12 +13,12 @@ describe('Field', () => {
             validators: [notEmpty]
         });
 
-        field.set('value', '');
+        field.setValue('');
         expect(field.isValid()).toBe(false);
         expect(field.getErrors()).toBeTruthy();
 
         field.clearErrors();
-        field.set('value', 'Iulian');
+        field.setValue('Iulian');
         expect(field.isValid()).toBe(true);
         expect(field.getErrors()).toBeFalsy();
     });

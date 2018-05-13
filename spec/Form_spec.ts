@@ -9,29 +9,26 @@ describe('Form', () => {
 
         const notEmpty = new Empty();
 
-        const firstName = new Field({
-            name: 'firstName',
-            validators: [notEmpty]
-        });
+        const firstName = new Field();
+        firstName.setName('firstName');
+        firstName.setValidators([notEmpty]);
 
         const lastName = new Field({
             name: 'lastName',
             validators: [notEmpty]
         });
 
-        const form = new Form({
-            fields: [firstName, lastName]
-        });
+        const form = new Form([firstName, lastName]);
 
         expect(form.isValid()).toBe(false);
 
-        firstName.set('value', 'John');
+        firstName.setValue('John');
         expect(form.isValid()).toBe(false);
 
-        lastName.set('value', 'Doe');
+        lastName.setValue('Doe');
         expect(form.isValid()).toBe(true);
 
-        lastName.set('value', '');
+        lastName.setValue('');
         expect(form.isValid()).toBe(false);
 
     });
