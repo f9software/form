@@ -8,10 +8,7 @@ describe('Field', () => {
 
         const notEmpty = new Empty();
 
-        const field = new Field({
-            name: 'firstName',
-            validators: [notEmpty]
-        });
+        const field = new Field('firstName', 'First Name', [notEmpty]);
 
         field.setValue('');
         expect(field.isValid()).toBe(false);
@@ -20,7 +17,7 @@ describe('Field', () => {
         field.clearErrors();
         field.setValue('Iulian');
         expect(field.isValid()).toBe(true);
-        expect(field.getErrors()).toBeFalsy();
+        expect(field.getErrors().length > 0).toBeFalsy();
     });
 
 });

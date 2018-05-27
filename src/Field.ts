@@ -2,29 +2,27 @@ import {IValidator} from "./validator/Validator";
 import {IError} from "./validator/Error";
 
 export class Field {
-    private errors: IError[] = null;
+    private errors: IError[] = [];
 
-    private name: string;
+    private name: string = '';
 
-    private label: string;
+    private label: string = '';
 
-    private validators: IValidator[];
+    private validators: IValidator[] = [];
 
     private value: any;
 
-    public constructor(data?: {name?: string, label?: string, validators?: IValidator[]}) {
-        if (data) {
-            if (data.name) {
-                this.setName(data.name);
-            }
+    public constructor(name?: string, label?: string, validators?: IValidator[]) {
+        if (name) {
+            this.setName(name);
+        }
 
-            if (data.label) {
-                this.setLabel(data.label);
-            }
+        if (label) {
+            this.setLabel(label);
+        }
 
-            if (data.validators) {
-                this.setValidators(data.validators);
-            }
+        if (validators) {
+            this.setValidators(validators);
         }
     }
 
@@ -60,7 +58,7 @@ export class Field {
         return this.validators;
     }
 
-    isValid(): boolean {
+    public isValid(): boolean {
         const value = this.getValue();
 
         // we clear any previous errors when we start a new validation
@@ -95,6 +93,6 @@ export class Field {
     }
 
     clearErrors(): any {
-        this.errors = null;
+        this.errors.length = 0;
     }
 }

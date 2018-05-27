@@ -13,10 +13,7 @@ describe('Form', () => {
         firstName.setName('firstName');
         firstName.setValidators([notEmpty]);
 
-        const lastName = new Field({
-            name: 'lastName',
-            validators: [notEmpty]
-        });
+        const lastName = new Field('lastName', 'Last Name', [notEmpty]);
 
         const form = new Form([firstName, lastName]);
 
